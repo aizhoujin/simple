@@ -1,0 +1,275 @@
+.kit-login {
+  position: relative;
+  height: 100vh;
+}
+.kit-login-bg {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background: url("../img/bg.png") no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+.kit-login-wapper {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: 77%;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: flex-end;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.kit-login-wapper .kit-login-slogan {
+  text-align: center;
+  color: #fff;
+  font-size: 36px;
+  letter-spacing: 2px;
+  line-height: 48px;
+  margin-bottom: 9px;
+  font-weight: 500;
+}
+.kit-login-wapper .kit-login-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 30px 52.5px;
+  background: #ffffff;
+  border-radius: 6px;
+  box-shadow: #eeeeee 1px 1px 2px;
+}
+.kit-login-wapper .kit-login-form .kit-login-title {
+  width: 300px;
+  height: 32px;
+  letter-spacing: 1px;
+  font-size: 24px;
+  font-family: SourceHanSansSC-Bold;
+  font-weight: bold;
+  color: #171d1f;
+  line-height: 32px;
+}
+.kit-login-wapper .kit-login-form .kit-login-function {
+  width: 168px;
+  height: 22px;
+  font-size: 15px;
+  font-family: SourceHanSansSC-Regular;
+  font-weight: bold;
+  color: #3e464b !important;
+  line-height: 22px;
+  margin-top: 4px;
+  margin-left: 107px!important;
+}
+.kit-login-wapper .custLoginMg {
+  display: inline-block;
+  margin-bottom: 0!important;
+}
+.kit-login-wapper .kit-login-title {
+  font-weight: 400;
+  line-height: 24px;
+  font-size: 16px;
+  margin: 0px 0px 20px;
+  text-align: center;
+  color: #009688;
+  letter-spacing: 12px;
+}
+.kit-login-wapper .kit-login-row {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  margin-bottom: 25px;
+  flex-direction: column;
+}
+.kit-login-wapper .kit-login-row .kit-login-col {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.kit-login-wapper .kit-login-row .kit-login-col .kit-login-username {
+  display: block;
+  width: 28px;
+  height: 22px;
+  line-height: 22px;
+  margin-top: 12px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-family: SourceHanSansSC-Regular !important;
+  font-weight: 400 !important;
+  color: #000000 !important;
+}
+.kit-login-wapper .kit-login-row .kit-login-col #kit-login-phone {
+  width: 299px !important;
+  height: 32px;
+  padding-left: 10px!important;
+}
+.kit-login-wapper .kit-login-row .kit-login-col .addBorder {
+  display: block;
+  width: 299px;
+  height: 32px;
+  border-radius: 2px;
+  border: 1px solid #d7dce8 !important;
+}
+.kit-login-wapper .kit-login-row .kit-login-col .kit-login-password {
+  display: block;
+  width: 28px;
+  height: 22px;
+  line-height: 22px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-family: SourceHanSansSC-Regular !important;
+  font-weight: 400 !important;
+  color: #000000 !important;
+}
+.kit-login-wapper .kit-login-row .kit-login-col .addpasswordBorder {
+  width: 299px;
+  height: 32px;
+  border-radius: 2px!important;
+  border: 1px solid #d7dce8 !important;
+}
+.kit-login-wapper .kit-login-row .kit-login-col .addpasswordBorder {
+  display: block;
+  width: 299px !important;
+  height: 32px;
+}
+.kit-login-wapper .kit-login-row .kit-login-col #kit-login-userPossword {
+  height: 32px;
+  line-height: 32px;
+  padding-left: 10px;
+}
+.kit-login-wapper .kit-login-row .kit-login-col .kit-login-identifi {
+  display: block;
+  margin-bottom: 10px;
+}
+.kit-login-wapper .kit-login-row .kit-login-col .kit-login-addBorder {
+  display: inline-block;
+  width: 115px;
+  height: 32px;
+  border-radius: 2px!important;
+  border: 1px solid #d7dce8 !important;
+}
+.kit-login-wapper .kit-login-row .kit-login-col .kit-login-identifiCode {
+  width: 115px;
+  height: 32px;
+}
+.kit-login-wapper .kit-login-row .kit-login-col .kit-login-changeCode {
+  float: right;
+}
+.kit-login-wapper .kit-login-row .kit-login-col .kit-login-wapper .kit-login-row .kit-login-btn {
+  border-radius: 2px!important;
+  line-height: 32px;
+  height: 32px;
+}
+.kit-login-wapper .kit-login-row .kit-login-col .layui-btn {
+  background-color: #3573FA!important;
+}
+.kit-login-wapper .kit-login-row .kit-login-col .layui-form-checked[lay-skin=primary] i {
+  border-color: #3573FA;
+  background-color: #3573FA;
+  color: #fff;
+}
+.kit-login-wapper .kit-login-row .kit-login-col .layui-form-checkbox[lay-skin=primary]:hover i {
+  border-color: #3573FA;
+  color: #fff;
+}
+.kit-login-wapper .kit-login-row .kit-login-col #forgot {
+  float: right;
+}
+.kit-login-wapper .kit-login-row .kit-login-col > i.layui-icon {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  color: #999999;
+  display: inline-block;
+  font-style: normal;
+  -webkit-text-stroke-width: .2px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.kit-login-wapper .kit-login-row .kit-login-col .kit-login-input {
+  width: 240px;
+  border-radius: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: inline-table;
+  overflow: visible;
+  border: 1px solid #E0E0E0;
+  background-color: #FFF;
+  transition: all 0.3s ease-out;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-color: #dcdcdc;
+}
+.kit-login-wapper .kit-login-row .kit-login-col .kit-login-input input {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  border: none;
+  outline: 0;
+  padding: 0;
+  font-weight: 400;
+  vertical-align: baseline;
+  background-color: transparent;
+  height: 26px;
+  line-height: 26px\9;
+  margin: 0;
+  padding: 0 8px;
+  border-radius: 4px;
+  color: #333;
+  padding-left: 25px;
+  font-size: 13px;
+}
+.kit-login-wapper .kit-login-row .layui-btn {
+  display: inline-block;
+  height: 38px;
+  line-height: 38px;
+  padding: 0 18px;
+  background-color: #3573FA;
+  color: #fff;
+  white-space: nowrap;
+  text-align: center;
+  font-size: 14px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.copyright {
+  width: 126px;
+  margin: 0 auto;
+  text-align: center;
+  height: 22px;
+  font-size: 14px;
+  font-family: SourceHanSansSC-Regular;
+  line-height: 22px;
+  font-weight: 400;
+  color: #3e464b;
+}
+.chageMG {
+  position: absolute;
+  top: 317px!important;
+  right: -163px !important;
+  padding-bottom: 10px!important;
+}
+.custPass {
+  margin-bottom: 17px!important;
+}

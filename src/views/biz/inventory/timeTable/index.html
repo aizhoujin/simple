@@ -1,0 +1,65 @@
+<div class="layui-fluid">
+    <div class="layui-row">
+        <div class="layui-col-xs12">
+            <div class="layui-card"  style="padding: 20px">
+                <form class="layui-form" action="">
+                    <div class="layui-form-item" pane="">
+                        <label class="layui-form-label">原始复选框</label>
+                        <div class="layui-input-block">
+                            <input type="checkbox" name="like1[write]" lay-skin="primary" title="写作" checked="">
+                            <input type="checkbox" name="like1[read]" lay-skin="primary" title="阅读">
+                            <input type="checkbox" name="like1[game]" lay-skin="primary" title="游戏" disabled="">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <select name="quiz">
+                                    <option value="">请选择问题</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <select name="quiz">
+                                    <option value="">请选择问题</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <select name="quiz">
+                                    <option value="">请选择问题</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <ul class="layui-tab-title">
+                    <li class="layui-this">网站设置</li>
+                    <li>用户管理</li>
+                    <li>权限分配</li>
+                    <li>商品管理</li>
+                    <li>订单管理</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.use('form', function () {
+        var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+
+        //……
+
+        //但是，如果你的HTML是动态生成的，自动渲染就会失效
+        //因此你需要在相应的地方，执行下述方法来手动渲染，跟这类似的还有 element.init();
+        form.render();
+    });
+    $('#calendar').fullCalendar({
+        header: {},
+    })
+</script>
+<!--<script src="./js/timeTable.js"></script>-->
+</html>

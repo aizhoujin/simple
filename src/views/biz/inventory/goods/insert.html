@@ -1,0 +1,176 @@
+<!-- 模板 -->
+<script src="/lib/layui/layui.js"></script>
+<script src="/js/config/config.js"></script>
+
+
+<div class="layui-fluid">
+    <div class="layui-row">
+        <div class="layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    <a href="#/inventory/goods/list" title="返回"><i class="layui-icon">&#xe65c;</i></a>物品信息
+                </div>
+                <div class="layui-card-body">
+                    <form class="layui-form layui-form-pane" action="" lay-filter="example">
+					<div class="layui-form-item">
+                             <div class="layui-inline">
+                                <label class="layui-form-label">物品名称</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="name" autocomplete="off"  placeholder="请输入物品名称" class="layui-input">
+                                </div>
+                            </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">采购价格</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="purchasePrice" autocomplete="off" placeholder="请输入采购价格" class="layui-input">
+                            </div>
+                        </div>
+
+                        </div>
+
+                        <div class="layui-form-item">
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label">销售价格</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="sellPrice" autocomplete="off" placeholder="请输入销售价格" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">物品类型</label>
+                                <div class="layui-input-block icon" id="goodsTypeSelect"></div>
+                            </div>
+
+                        </div>
+						<div class="layui-form-item">
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label">单位</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="unit"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+							<div class="layui-inline">
+                                <label class="layui-form-label">规格</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="specification" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+						<div class="layui-form-item">
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label">适用课程</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="useCourseNames" placeholder="请选择适用课程" autocomplete="off"
+                                           class="layui-input" id="useCourseNames" value="" ts-selected="">
+                                    <input type="text" name="useCourseIds" class="layui-input" id="useCourseIds"
+                                           style="display: none">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">状态</label>
+                                <div class="layui-input-block">
+                                    <input type="radio" name="state" value="1" checked title="启用">
+									<input type="radio" name="state" value="0" checked title="停用">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="height: 100px;">备注信息</label>
+                            <div class="layui-input-block">
+                                <textarea name="memo" placeholder="请输入备注信息" class="layui-textarea"></textarea>
+                            </div>
+                        </div>
+
+
+
+						<div class="layui-form-item" style="text-align: center">
+                            <button class="layui-btn xxx" id="btn_submit" lay-submit lay-filter="formUserInfo">
+                                确定添加
+                            </button>
+                            <button type="reset" id="btn_reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 脚本 -->
+<script>
+    //加载动画
+    layui.use(['form', 'jquery', 'laydate', 'selector', 'selectN','courseApi', 'goodsApi', 'tools'], function () {
+            const form = layui.form;
+            const $ = layui.jquery;
+            const laydate = layui.laydate;
+            const selectN = layui.selectN;
+        const goodsApi = layui.goodsApi;
+        const courseApi = layui.courseApi;
+            const tools = layui.tools;
+            const selector = layui.selector;
+
+        //物品类型
+        const goodsTypeSelectRender = selectN({
+            //元素容器【必填】
+            elem: '#goodsTypeSelect'
+            //候选数据【必填】
+            , data: cfx.getSelectData(cst.goodsType())
+            , verify: "required"
+            , search: true
+            , tips: '请选择物品类型'
+            , name: 'goodsTypeId'
+        });
+        selector.courseSelector({
+            nameKey: "useCourseNames",
+            idKey: "useCourseIds",
+            apiObj: courseApi,
+            searchKey: "name"
+        });
+
+            form.render();
+            //监听提交
+            form.on('submit(formUserInfo)', (data) => {
+                cfx.loading();
+                goodsApi.add(data.field)
+                    .then((data) => {
+                        if (data.code == 200) {
+                            layer.msg("保存成功");
+                        }
+                        cfx.close();
+                    });
+                return false;
+            });
+        }
+    );
+</script>
+
+<!-- 样式 -->
+<style type="text/css">
+    .layui-treeSelect .ztree li a, .ztree li span {
+        line-height: 28px;
+    }
+
+    .icon i {
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        margin-top: 8px;
+    }
+
+    #staffLevelSelect .layui-input-inline {
+        margin-right: 0px;
+    }
+
+    .layui-form-select .layui-input {
+        padding-right: 0px;
+    }
+
+    .icon .layui-input {
+        /*padding-right: 5px;*/
+    }
+
+</style>

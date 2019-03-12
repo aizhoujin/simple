@@ -1,0 +1,399 @@
+.layui-disabled, .layui-disabled:hover {
+    /*color: darkgrey;*/
+    color: darkgrey !important;
+    cursor: not-allowed !important
+}
+
+.layui-table tr:nth-child(even) {
+    background-color: #FFFFF5;
+}
+
+.layui-form-item .layui-input-inline {
+    /*width: 160px;*/
+    margin-right: 0;
+}
+
+
+.layui-laypage-skip .layui-input:focus{
+    border-color: #3278F0 !important;
+}
+
+
+.layui-form-checkbox[lay-skin="primary"]:hover i {
+
+    border-color: #3278F0;
+    color: #fff;
+
+}
+.layui-btn-primary:hover{
+	border-color: #3278F0;
+	color: #333;
+}
+.layui-form-pane .layui-input-inline {
+    margin-left: -4px;
+}
+.layui-disabled {
+    color: #000!important;
+}
+.layui-form-label {
+    color:rgba(105, 111, 115, 1);
+}
+
+.deleteBorder{
+    background: #fff;
+    border:none!important;
+    font-family:SourceHanSansSC-Regular;
+    font-weight:400;
+}
+/*.layui-input {*/
+/*width: auto!important;*/
+/*display: inline-block;*/
+/*}*/
+
+.changeInfo {
+    float: left;
+    width:113px;
+    height:32px;
+    cursor: pointer;
+    line-height: 32px;
+    background:rgba(50,120,240,1)!important;
+    border-radius:4px;
+    border:1px solid rgba(190,193,195,1);
+    color: #fff;
+    text-align: center;
+    margin-left: 12px;
+}
+.deleteStudent {
+    float: left;
+    width:113px;
+    height:32px;
+    cursor: pointer;
+    line-height: 32px;
+    border-radius:4px;
+    border:1px solid rgba(190,193,195,1);
+    color: #000000;
+    text-align: center;
+    margin-left: 30px;
+    margin-bottom: -10px;
+
+}
+.trueName {
+    height: 37px;
+    padding-left: 10px;
+}
+.studentInfo {
+    width:64px;
+    height:24px;
+    font-size:16px;
+    font-family:SourceHanSansSC-Bold;
+    font-weight:bold;
+    color:rgba(0,0,0,1);
+    line-height:24px;
+}
+
+.studentDataContainer {
+    padding: 10px 0;
+    padding-left:24px;
+    background: rgba(50,120,240,0.05)
+
+}
+.floatRight {
+    float: right;
+}
+.stuendtData {
+    width:56px;
+    height:22px;
+    font-size:14px!important;
+    padding-left: 17px!important;
+    font-family:SourceHanSansSC-Bold;
+    font-weight:bold;
+    color:rgba(23,29,31,1)!important;
+    line-height:22px;
+}
+.fluidPding {
+    padding: 12px 30px!important;
+    background: rgba(0, 0, 0, 0.5)!important;
+}
+.deletePadding {
+    padding-left:0;
+    padding-right: 0;
+
+}
+.layui-form-label {
+    text-align: left;
+}
+layui-input-block .layui-disabled {
+    width:98px;
+    height:22px;
+    font-size:14px;
+    font-family:SourceHanSansSC-Regular;
+    font-weight:400;
+    color:rgba(0,0,0,1);
+    line-height:22px;
+}
+
+.layui-card .deleteBottomBorder {
+    border-bottom: 0;
+    padding-top: 20px;
+    margin-bottom: 10px;
+    padding-left: 24px;
+}
+.addMarginTop {
+    margin-top: 20px;
+}
+.reduMl {
+    margin-left: 21px;
+}
+.addMg {
+    margin-left: 26px;
+}
+.addMr1 {
+    padding-top: 0;
+    margin-left: 25px;
+}
+.marginTop {
+    margin-top: 222px;
+    margin-bottom: 0;
+}
+.custumBtnContainer {
+    display: inline-block;
+    width: 60px;
+    height: 38px;
+    line-height: 38px\9;
+    margin-right: 10px;
+    padding-bottom: 12px;
+}
+.custumBtn {
+    background: rgba(50, 120, 240, 1);
+    vertical-align: top;
+}
+.downContainer {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    margin-left: 6px;
+    vertical-align: middle;
+}
+.cusDivTitle {
+    margin-right: 20px;
+    display: inline-block;
+}
+.custPdTop {
+    padding-top: 8px;
+    width: 1600px;
+    overflow: hidden;
+}
+.down {
+    display: inline-block;
+    height: 26px;
+    width: 35px;
+    background: url("../img/down.png")no-repeat;
+    background-size: 100% 100%;
+}
+.layui-card-header {
+    height: 50px;
+    transition: height 0.6s;
+}
+.redusPaddingLeft {
+    padding-left: 21px;
+}
+.addHeight {
+    border-bottom: 0;
+    height: 90px;
+}
+.addClass {
+    margin-top: 100px!important;
+}
+.custumInput {
+    background: transparent;
+}
+.marginLeft {
+    margin-left: 15px;
+    margin-top: 10px;
+}
+.sureBtn, .cannelBtn {
+    margin-top: 30px;
+}
+.sureBtn {
+    margin-left: 50px;
+
+}
+.adMg {
+    margin-top: 10px;
+}
+.addMr {
+    margin-left: 10px;
+}
+.changeColor {
+    color:#333;
+    padding-right: 0;
+    padding-left: 8px;
+}
+.changeML {
+    margin-left: 100px;
+}
+.custDiv {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 20px;
+}
+.custDiv input {
+    padding-left: 0!important;
+}
+.addPd {
+    padding-top: 17px;
+    color:#333;
+}
+.custDiv input {
+    padding: 0 20px;
+}
+.inblock {
+    display: inline-block;
+}
+.my select {
+    height:40px;
+    width: 156px;
+    border: 1px solid #e6e6e6;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none; /*去掉下拉箭头*/
+    text-align: center;
+    border-radius: 2px;
+
+}
+.my option::-ms-expand{ display: none; }
+.my option {
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari 和 Chrome */
+    appearance:none;
+    height: 40px;
+}
+.my option:hover {
+    /*background: rgba(50, 120, 240, 1)*/
+}
+.cgcolor {
+    color: #333;
+    padding-top: 14px;
+;
+}
+.degubMg {
+    padding-left: 8px!important;
+}
+.redusmarginRight {
+    margin-right: 5px;
+}
+.redusmarginLeft {
+    margin-left: 0;
+    vertical-align: top;
+    padding-top: 0;
+}
+.major {
+    width: 91px;
+    padding-left: 0;
+}
+.redusmarginLeft {
+    margin-left: 10px;
+}
+.redusmarginLeft1 {
+    padding-left: 0;
+}
+.redusWidth {
+    width: 264px!important;
+}
+.redusWidth1 {
+    width: 258px!important;
+}
+.deleMarginRight {
+    margin-right: 0;
+}
+.redusMarginLeft2 {
+    margin-left: 112px;
+}
+.delePaddingLeft {
+    padding-left: 0;
+}
+.deleteMarginRight{
+    margin-right: 0!important;
+}
+.addMarginLeft {
+    margin-left: 10px;
+}
+.addPadLeft {
+    padding-left: 5px;
+}
+.deleMarginLeft {
+    padding-left: 13px;
+}
+.addWidth {
+    width: 90px;
+}
+/*=====================2019/2/25/9:12========================*/
+.custDiv .layui-input {
+    display: inline-block;
+    width: auto;
+}
+.custOffset {
+    margin-left: 281.183px;
+}
+.custWidth {
+    padding: 0 20px;
+    text-align: center;
+}
+.custMg {
+    margin-left: 83px;
+}
+.stopTime {
+    margin-left: 14px;
+}
+.majorCustMg {
+    margin-right:10px;
+}
+.custMajorInput {
+    padding-right: 0!important;
+}
+.custMobile {
+    padding-left: 25px;
+}
+.custDivMg {
+    margin-left: 6px;
+}
+.custPd {
+    padding-left: 0!important;
+}
+.custStartDiv {
+    margin-left: 0;
+}
+.custStartTime {
+    margin-left: 30px;
+}
+.custStopTime {
+    padding-left: 0;
+}
+.custLabel {
+    margin-right: 2px;
+}
+.custStopTimeDiv {
+    margin-left: 2px;
+}
+/*======================class/list=====================*/
+.custSearchBtn {
+    vertical-align: top;
+    background: #3278F0 !important;
+}
+/*=================end===list====================*/
+/*===============class/insert================*/
+.custBorder {
+    border: none!important;
+    background: #fff!important;
+}
+.xxx {
+    background: #3278F0 !important;
+}
+/*================end==insert==================*/
+.custInline {
+    width: auto!important;
+}
+.custInline input {
+    border:none!important;
+}

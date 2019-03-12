@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ZH-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>学生管理系统 - 登陆</title>
+    <link rel="stylesheet" href="../../lib/layui/css/layui.css">
+    <link rel="stylesheet" href="../../css/login.css">
+</head>
+
+<body>
+<div class="kit-login">
+    <div class="kit-login-bg"></div>
+    <div class="kit-login-wapper">
+        <div class="kit-login-form ">
+            <span class="kit-login-title custLoginMg">欢迎登录启航教育管理系统</span>
+            <!--2018/2/18添加-->
+            <h5 class="kit-login-function">科技改变教育</h5>
+            <form class="layui-form">
+
+                <div class="kit-login-row">
+                    <div class="kit-login-col">
+                        <!--新增-->
+                        <span class="kit-login-username">账号</span>
+                        <span class="kit-login-input addBorder">
+                            <input id="kit-login-phone" type="text" name="mobile" placeholder="请输入11位手机号"/>
+                        </span>
+                    </div>
+                </div>
+                <div class="kit-login-row">
+                    <div class="kit-login-col">
+                        <!--新增-->
+                        <span class="kit-login-password">密码</span>
+                        <span class="kit-login-input addpasswordBorder">
+                            <input id="kit-login-userPossword" type="password" name="password" placeholder="请输入6位密码"/>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="kit-login-row">
+                    <div class="kit-login-col">
+                        <span class="kit-login-identifi">验证码</span>
+                        <!--<span class="kit-login-input kit-login-addBorder" style="width: 120px;padding-left:0 ">-->
+                        <!--<input type="text" name="kaptcha" lay-verify="required" placeholder=""/>-->
+                        <!--</span>-->
+                        <span class="kit-login-input kit-login-addBorder" style="width: 120px;padding-left:0 ">
+                            <input type="text" class="kit-login-identifiCode" name="kaptcha" placeholder=""/>
+                        </span>
+                        <img src="#" id="kaptcha" style="display: none;cursor:pointer;width: 50%;height: 60%;"/>
+                        <!--<span class="kit-login-randomCode"></span>-->
+                        <span class="kit-login-changeCode">换一张</span>
+                    </div>
+                </div>
+                <div class="kit-login-row">
+                    <button class="layui-btn kit-login-btn kit-login-reset" lay-submit="submit" lay-filter="login_hash">
+                        登录系统
+                    </button>
+                </div>
+                <div class="kit-login-row">
+                    <div class="kit-login-col clearFloat">
+                        <input type="checkbox" name="rememberMe" value="true" title="记住帐号" lay-skin="primary">
+                        <a href="javascript:;"
+                           style="color: rgb(153, 153, 153); text-decoration: none; font-size: 13px;"
+                           id="forgot">忘记了密码?</a>
+                    </div>
+                </div>
+            </form>
+            <div class="copyright">版权归启航教育所有</div>
+        </div>
+    </div>
+</div>
+
+<!--<script src="lib/polyfill.min.js"></script>-->
+<script src="lib/layui/layui.js"></script>
+<script src="js/config/config.js"></script>
+
+<script>
+    //'axios', 'lodash'
+    layui.use(['layer', 'form', 'userApi'], function () {
+        const form = layui.form;
+        const userApi = layui.userApi
+        const $ = layui.jquery;
+
+        //初始化
+        $(() => {
+            //赋值验证码
+            $('#kaptcha').attr('src', userApi.getKaptcha());
+            $('#kaptcha').load(() => {
+                $('#kaptcha').css('display', 'block');
+            });
+            $("#kaptcha").click(() => {
+                $("#kaptcha").attr('src', userApi.getKaptcha() + '?' + Math.floor(Math.random() * 100));
+            });
+        });
+
+        //忘记密码被点击
+        $('#forgot').on('click', function () {
+            layer.msg('请联系管理员.');
+        });
+        //监听提交
+        form.on('submit(login_hash)', function (data) {
+            cfx.loading();
+            userApi.login(data.field.mobile, data.field.password, data.field.kaptcha)
+                .then((data) => {
+                    if (data.code === 200) {
+                        location.href = '/#/';
+                    }
+                    cfx.close();
+                })
+                .catch(function (err) {
+                    cfx.close();
+                });
+            return false;
+        });
+    });
+
+</script>
+</body>
+
+</html>

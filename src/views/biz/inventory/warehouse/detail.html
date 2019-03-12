@@ -1,0 +1,156 @@
+<!-- 模板 -->
+<script src="/lib/layui/layui.js"></script>
+<script src="/js/config/config.js"></script>
+
+
+<div class="layui-fluid">
+    <div class="layui-row">
+        <div class="layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    <a href="#/wareHouse/list" title="返回"><i class="layui-icon">&#xe65c;</i></a>仓库信息
+                </div>
+                <div class="layui-card-body">
+                    <form class="layui-form layui-form-pane" action="" lay-filter="form_myInfo">
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">仓库名称</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="name" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">仓库类型</label>
+                                <div class="layui-input-block">
+                                    <input type="radio" name="type" value="1" checked title="总仓库">
+									<input type="radio" name="type" value="0" checked title="分仓库">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="height: 100px;">备注信息</label>
+                            <div class="layui-input-block">
+                                <textarea name="memo" placeholder="请输入备注信息" class="layui-textarea"></textarea>
+                            </div>
+                        </div>
+
+
+
+                        <div class="layui-form-item" style="display: none">
+                            <input type="text" name="id" class="layui-input">
+                        </div>
+
+
+                        <div class="layui-form-item" style="text-align: center">
+                            <button class="layui-btn xxx" id="btn_submit" lay-submit lay-filter="formUserInfo">
+                                确定修改
+                            </button>
+                        </div>
+
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 脚本 -->
+<script>
+    //加载动画
+    cfx.loading();
+    layui.use(['form', 'table', 'jquery', 'laydate', 'selectN', 'wareHouseApi', 'queryEntry', 'tools'], function () {
+            const form = layui.form;
+            const $ = layui.jquery;
+            const table = layui.table;
+            const laydate = layui.laydate;
+            const selectN = layui.selectN;
+            const wareHouseApi = layui.wareHouseApi;
+            const tools = layui.tools;
+            let query = layui.queryEntry.get();
+            let wareHouseInfo = {};
+
+
+            const wareHouseId = tools.getUrlParam("wareHouseId");
+            const isEdit = tools.getUrlParam("edit");
+            //  禁用/启用表单元素
+            tools.disabledForm(isEdit);
+
+
+            //请求接口
+        wareHouseApi.getDetail(wareHouseId)
+                .then((data) => {
+                    if (data.code === 200) {
+                        wareHouseInfo = data.data;
+                        wareHouseInfo.type = wareHouseInfo.type.toString();
+                        form.val("form_myInfo", wareHouseInfo);
+                        $("input[name='id']").val(wareHouseId);
+                        $("textarea[name='memo']").val(wareHouseInfo.memo);
+
+                        if (isEdit == 1) {
+
+                        } else {
+
+                        }
+                    }
+
+                    cfx.close();
+                });
+
+
+
+
+            form.render();
+            //监听提交
+            form.on('submit(formUserInfo)', (data) => {
+                cfx.loading();
+                wareHouseApi.edit(data.field)
+                    .then((data) => {
+                        if (data.code == 200) {
+                            layer.msg("保存成功");
+                        }
+                        cfx.close();
+                    });
+                return false;
+            });
+        }
+    );
+</script>
+<script type="text/html" id="tableBar">
+    <a class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon">&#xe654;</i> 新增</a>
+</script>
+<script type="text/html" id="toolBar">
+    <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete"><i class="layui-icon layui-icon-close"></i>删除</a>
+</script>
+<!-- 样式 -->
+<style type="text/css">
+    .layui-treeSelect .ztree li a, .ztree li span {
+        line-height: 28px;
+    }
+
+    .icon i {
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        margin-top: 8px;
+    }
+
+    #staffLevelSelect .layui-input-inline {
+        margin-right: 0px;
+    }
+
+    .layui-form-select .layui-input {
+        padding-right: 0px;
+    }
+
+    .icon .layui-input {
+        /*padding-right: 5px;*/
+    }
+
+</style>

@@ -1,0 +1,207 @@
+<div class="layui-fluid">
+    <div class="layui-row">
+        <div class="layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header" style="padding-top:8px;">
+                    <div id="goods_search_bar" class=" layui-row layui-col-space10">
+                        <div class="layui-col-md2 layui-col-md-offset5">
+                            <input type="text" name="name" placeholder="请输入物品名称" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                        <div class="layui-col-md2">
+                            <input type="text" name="createStaffId" placeholder="请输入创建人" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                        <div class="layui-col-md2">
+                            <input type="text" name="goodsTypeId" placeholder="请输入物品类型" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                        <div class="layui-col-md1">
+                            <button id="btn_search" class="layui-btn">搜一下</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-card-body">
+                    <table id="tb_goods" lay-filter="goods_list"></table>
+
+                    <div id="dv_goods_page"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    cfx.loading();
+    layui.use(['table', 'jquery', 'laypage', 'goodsApi', 'queryEntry', 'tools'], () => {
+        const $ = layui.jquery;
+        const table = layui.table;
+        const laypage = layui.laypage;
+        const tools = layui.tools;
+
+        const goodsApi = layui.goodsApi;
+        let query = layui.queryEntry.get();
+        let goods_data = {};
+
+
+        //渲染表格
+        const goods_list = table.render({
+            elem: "#tb_goods",
+            cellMinWidth: 60,
+            toolbar: '#tableBar',
+            defaultToolbar: ['filter', 'print', 'exports'],
+            cols: [[
+                {field: "index", title: '序号', type: 'numbers', align: "center"},
+                {field: "id", title: '主键Id', hide: true},
+                {field: "name", title: "物品名称", width: "150", align: "center"},
+                {
+                    field: "goodsTypeId", title: "物品类型", width: "150", align: "center",
+                    templet: (d) => cst.goodsType(d.goodsTypeId).k
+
+                },
+                {field: "unit", title: "单位", width: "150", align: "center"},
+                {field: "purchasePrice", title: "采购价格", width: "150", align: "center"},
+                {field: "sellPrice", title: "销售价格", width: "150", align: "center"},
+                {field: "specification", title: "规格", width: "150", align: "center"},
+                {
+                    field: "status", title: "状态", width: "150", align: "center",
+                    templet: (d) => d.status == 0 ? "停用" : "启用"
+                },
+                {field: "useCourseIds", title: "适用课程", width: "150", align: "center"},
+                {field: "memo", title: "备注", width: "150", align: "center"},
+                {field: "createTime", title: "创建时间", width: "180", templet: (d) => cfx.getDate(d.createTime)},
+                {title: '操作', fixed: 'right', width: 200, align: 'center', toolbar: '#toolBar', align: "center"}
+            ]],
+            data: goods_data
+        });
+        //设置 tableBar
+        table.on('toolbar(goods_list)', (obj) => {
+            const layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+            if (layEvent === 'add') {
+                layer.open({
+                    type: 2,
+                    area: ['680px', '580px'],
+                    content: ['views/biz/inventory/goods/insert.html', 'no'],
+                    end: () => {
+                        queryGoods(query);
+                    }
+                });
+            }
+        });
+
+        //设置 toolBar 事件
+        table.on('tool(goods_list)', (obj) => {
+            const data = obj.data; //获得当前行数据
+            const layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+            const tr = obj.tr; //获得当前行 tr 的DOM对象
+            if (layEvent === 'detail') {
+
+
+                const url = tools.getUrl(path.goods.detail,
+                    [
+                        {"goodsId": data.id},
+                        {"edit": 0},
+                    ]);
+                layer.open({
+                    type: 2,
+                    area: ['680px', '580px'],
+                    content: [url, 'yes']
+                });
+
+
+            } else if (layEvent === 'edit') {
+
+
+                const url = tools.getUrl(path.goods.detail,
+                    [
+                        {"goodsId": data.id},
+                        {"edit": 1},
+                    ]);
+                layer.open({
+                    type: 2,
+                    area: ['680px', '580px'],
+                    content: [url, 'yes'],
+                    end: () => {
+                        queryGoods(query);
+                    }
+                });
+            } else if (layEvent === 'delete') {
+                layer.open({
+                    content: '确定要删除此账户信息？',
+                    btn: ['确定', '取消'],
+                    btn1: (index, layero) => {
+                        goodsApi.delete(data.id)
+                            .then(data => {
+                                queryGoods(query);
+                            });
+                        layer.close(index);
+                    },
+                    btn2: (index, layero) => {
+                    },
+                });
+            }
+        });
+        // 初始化 laypage
+        const goods_laypage = function () {
+            laypage.render({
+                elem: "dv_goods_page",
+                count: goods_data.total,
+                curr: goods_data.page,
+                //hash: 'page', //自定义hash值
+                theme: 'xxx',
+                jump: (obj, first) => {
+                    //首次不执行
+                    if (!first) {
+                        query.page = obj.curr;
+                        query.size = obj.limit;
+                        queryGoods(query);
+                    }
+                }
+            });
+        }
+
+        //查询 物品方法
+        const queryGoods = (query) => {
+            goodsApi.getList(query)
+                .then((data) => {
+                    if (data.code === 200) {
+                        goods_data = data.data;
+                        goods_list.reload({
+                            data: goods_data.list
+                        });
+                        goods_laypage();
+                    }
+
+                    cfx.close();
+                });
+        };
+        //搜索
+        $("#btn_search").click(() => {
+            //const searchData = tools.searchData('official_search_bar');
+            query = tools.searchQuery('goods_search_bar', [
+                {'name': 'like'},
+                {'createStaffId': 'like',},
+                {'goodsTypeId': 'like',},
+            ]);
+            queryGoods(query);
+        });
+
+        //调用接口
+
+        queryGoods(query);
+    });
+</script>
+<script type="text/html" id="tableBar">
+    <a class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon">&#xe654;</i> 新增</a>
+</script>
+<script type="text/html" id="toolBar">
+    <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete"><i class="layui-icon layui-icon-close"></i>删除</a>
+</script>
+
+<style>
+    .layui-table tr:nth-child(even) {
+        background-color: #FFFFF5;
+    }
+</style>

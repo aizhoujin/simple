@@ -1,0 +1,367 @@
+/****************整体边距*************/
+
+.Qh-list-padding {
+	padding: 26px;
+}
+
+
+/****************搜索框*************/
+
+.Qh-btn-color {
+	background-color: #3278F0!important;
+}
+
+
+/***********  单选框/复选框***********/
+
+.tab_sty_sc table .layui-form-checked .layui-icon-ok {
+	background-color: #3278F0!important;
+	border-color: #3278F0!important;
+}
+
+.layui-form-radio>i:hover,
+.layui-form-radioed>i {
+	border-color: #3278F0!important;
+	color: #3278F0!important;
+	;
+}
+
+
+/***************tab样式******************/
+
+.tab_body_sty>div>.layui-table-tool {
+	background-color: #fff!important;
+	padding-left: 0!important;
+}
+
+.tab_body_sty>div {
+	border: none!important;
+}
+
+.tab_body_sty>div>.layui-table-box {
+	border: 1px solid #e6e6e6;
+	border-top: none;
+}
+
+.tab_sty_sc table .layui-table-hover .layui-icon-ok {
+	border-color: #3278F0!important;
+}
+
+.tab_sty_sc table thead tr {
+	background-color: #fff;
+	color: #171D1F;
+}
+
+.tab_sty_sc table thead tr th div {
+	font-weight: bold!important;
+}
+
+.tab_sty_sc table thead tr th div,
+.tab_sty_sc table tr td div {
+	text-align: center;
+	font-size: 14px!important;
+}
+
+.Qh_icon_style i {
+	padding-right: 10px;
+	font-size: 20px!important;
+}
+
+.Qh_icon_style i:hover {
+	color: #3278F0;
+}
+
+.tab_sty_sc .layui-table-tool .layui-table-tool-self div {
+	border: none!important;
+}
+
+.Qh_tab_colora {
+	background: #3278F0!important;
+}
+
+.Qh_tab_colorb {
+	background: #FA5050!important;
+}
+
+
+/***列表筛选/打印/下载****/
+
+div[lay-event='LAYTABLE_COLS'],
+div[lay-event='LAYTABLE_PRINT'],
+div[lay-event='LAYTABLE_EXPORT'] {
+	width: auto!important;
+}
+
+div[lay-event='LAYTABLE_COLS'] i,
+div[lay-event='LAYTABLE_PRINT'] i,
+div[lay-event='LAYTABLE_EXPORT'] i {
+	font-size: 14px;
+	color: #6F798C;
+}
+
+.Qh-tab-font {
+	font-size: 12px;
+	color: #696F73;
+	float: right;
+	padding-left: 4px;
+}
+
+
+/***********搜索*********/
+
+.Qh_layui_lee {
+	position: absolute;
+	margin-left:70px;
+	margin-top: -40px;
+	width: 60px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	color: #6F798C;
+	cursor: pointer;
+	transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+}
+
+.Qh_layui_lee.Qh-deg {
+	transform: rotate(270deg);
+	-ms-transform: rotate(270deg);
+	-moz-transform: rotate(270deg);
+	-webkit-transform: rotate(270deg);
+	-o-transform: rotate(270deg);
+}
+
+
+/*************新增学员***************/
+
+.Qh-insrt-form {
+	border: none!important;
+	background-color: #fff!important;
+	text-align: left!important;
+}
+.Qh-insrt-form font  {
+	 position: absolute;  z-index: 99;
+}
+.Qh-texar-wid {
+	width: 54%;
+}
+
+.Qh-insrt-form span {
+	position: absolute;
+	left: 4px;
+	margin-top: 3px;
+}
+
+.Qh-insrt-title {
+	width: 100%;
+	height: 32px;
+	line-height: 32px;
+	background: rgba(50, 120, 240, 0.05);
+	font-size: 14px;
+	font-weight: bold;
+	color: #171D1F;
+	border: none;
+	margin-bottom: 20px;
+}
+
+.Qh-insrt-title p {
+	padding-left: 10px;
+}
+
+.Qh_insrt_border {
+	border: 1px solid #EAEAEA;
+}
+
+
+/*按钮**/
+
+.Qh_insert_btn {
+	padding-left: 10px;
+}
+
+.Qh_insert_btn button:first-child,
+.Qh_cert_btn {
+	background-color: #3278F0;
+	color: #fff;
+}
+
+.accdernum_cur{
+	color: #3278F0;
+}
+
+body div.layui-layer-iframe .layui-layer-title {
+	background-color: #fff!important;
+	padding: 10px 0 6px 30px!important;
+	border: none!important;
+	font-size: 16px!important;
+	font-weight: bold;
+}
+
+.layui-laydate .layui-this {
+	border-radius: 30px;
+	background-color: #007DDB!important;
+	background: #007DDB;
+}
+
+.layui-laydate-content td,
+.layui-laydate-content th {
+	width: 36px!important;
+	height: 36px!important;
+}
+
+.laydate-theme-inrtbj .layui-laydate-content th td {
+	background: #007DDB;
+}
+
+.layui-form-pane .layui-input-inline {
+	margin-left: 0!important;
+}
+
+.icon .layui-input-inline {
+	width: 100.5%!important;
+}
+
+
+.laydate-footer-btns span:last-child {
+	display: none!important;
+}
+
+
+/********列表背景******/
+  .tab_sty_sc table tbody tr:nth-child(odd) {
+        background-color: #f5f8fe;
+    }
+     .tab_sty_sc table tbody tr:nth-child(even) {
+        background-color: #fff;
+    }
+    
+.NO-font-sty{
+	position: absolute; right: 10px;
+}
+.right_inputs{
+	text-align: right!important;
+
+}
+
+
+/**************************/
+.Qh-tab-title li{
+	font-size: 16px!important;
+}
+
+
+.school-no-aply , .school-title-aply{
+	
+	width: 20%;
+	
+}
+.school-title-aply{
+    
+	height: 40px;
+	line-height: 40px;
+	
+}
+
+.school-no-aply:first-child ,  .school-title-aply:first-child{
+	width: 48%;
+	padding-left:15%;
+}
+ .school-title-aply p{
+ 	text-align: center;
+ 	background: #f5f8fe;
+ 	font-weight: bold;
+ 	-webkit-border-radius: 3px;
+ 	-moz-border-radius: 3px;
+ 	-o-border-radius: 3px;
+ 	border-radius: 3px;
+ }
+
+
+/******************/
+
+.zj_result{
+	clear: both;
+	display: block;
+}
+.zj_result>div{
+	width: 100px;
+	font-size: 16px;
+	font-weight: bold;
+	background:rgba(50,120,240,0.9);
+	color: #fff;
+	margin-bottom: 10px;
+	border-radius: 3px;
+}
+.zj_result table{
+	margin-top: 10px;
+}
+.zj_result>div , .zj_result table {
+	text-align: center;
+	margin: 0 auto;
+}
+.zj_result table , .zj_result td , .zj_result tr{
+	border: 5px solid #fff;
+
+}
+ .zj_result td {
+ 	width:42px;
+ 	height: 42px;
+ 	background:rgba(50,120,240,0.9);
+	color: #fff;
+	border-radius: 5px;
+	text-align: center;
+	line-height: 45px;
+	font-size: 24px;
+	cursor: pointer;
+   
+ 	
+ }
+  .zj_result td.cur{
+ 	background: #ededed;
+	color: #ccc;
+ }
+  .zj_result td:before ,  .zj_result td.cur:before{
+  	font-family:"crt_iconfont" !important;
+  	 content: "\e612";
+  }
+ 
+
+ 
+ .Tab_clrom_bj p{
+ 	padding-left: 10px;
+ }
+
+.Tab_clrom_bj p i , .Tab_clrom_bj p span{
+	display: block;
+	float: left;
+	font-style: normal;
+}
+.Tab_clrom_bj p span{
+	width: 30px;
+	height: 30px;
+	background: #ededed;
+	color: #ccc;
+	border-radius: 3px;
+	text-align: center;
+	line-height: 30px;
+	font-size: 20px;
+}
+.Tab_clrom_bj.hover p span{
+ background:rgba(50,120,240,0.9);
+ color: #fff;
+}
+
+
+/***********教室列表************/
+.clss_room_heg{
+	position: relative;
+	height: 95%;
+   overflow-y: auto;
+}
+
+
+
+

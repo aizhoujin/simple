@@ -1,0 +1,329 @@
+*,
+body,
+div,
+ul,
+li,
+ol,
+i,
+p,
+span,
+table {
+	font-family: SourceHanSansSC-Regular!important;
+}
+
+.p_top {
+	padding-top: 6px;
+}
+
+.main-fr {
+	float: right!important;
+}
+
+.main-fl {
+	float: left;
+}
+
+
+/*********** 滚动条样式************/
+
+::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #f5f8fe!important;
+}
+
+/**********定义字体*********/
+@font-face {
+  font-family: 'crt_iconfont';
+  src:url('font/crt-iconfont.eot');
+  src: url('font/crt_iconfont.eot?#iefix') format('embedded-opentype'),
+      url('font/crt_iconfont.woff2') format('woff2'),
+      url('font/crt_iconfont.woff') format('woff'),
+      url('font/crt_iconfont.ttf') format('truetype'),
+      url('font/crt_iconfont.svg#iconfont') format('svg');
+}
+.crt_iconfont{
+	font-family:"crt_iconfont" !important;
+	font-size: 16px;
+	font-style:normal;
+  　　-webkit-font-smoothing: antialiased;
+  　　-moz-osx-font-smoothing: grayscale;
+}
+
+
+
+/***************公共头部*************/
+
+
+/*头部背景*/
+
+.Zj_topcolor,
+.Zj_topright,
+.Zj_topright li,
+.Zj_topright li a {
+	background: #fff!important;
+	color: #696F73!important;
+}
+
+.Zj_topleft {
+	background: rgba(50, 120, 240, 1)!important;
+}
+
+.kit-theme-default .layui-layout-admin .layui-header .layui-logo-toggle {
+	width: 35px!important;
+}
+
+.kit-theme-default .layui-layout-admin .layui-header .layui-logo-brand {
+	padding-left: 35px!important;
+}
+
+.kit-theme-default .layui-layout-admin .layui-header .layui-logo-brand a {
+	padding-left: 2px!important;
+}
+
+.kit-theme-default .layui-layout-admin .layui-header .layui-logo-brand a:hover {
+	background-color: #3278F0!important;
+	color: #fff!important;
+	opacity: 0.9;
+}
+
+.kit-theme-default .layui-layout-admin .layui-header .layui-logo-toggle:hover {
+	background-color: #3278F0!important;
+	color: #fff!important;
+	opacity: 0.9;
+}
+
+
+/**标题**/
+
+.Qh_name_sty {
+	font-size: 18px;
+	font-family: SourceHanSansSC-Bold;
+	font-weight: bold;
+	color: rgba(255, 255, 255, 1);
+}
+
+.Qh_name_sty img {
+	width: 32px;
+	height: 32px;
+	margin-right: 10px;
+	border-radius: 32px;
+}
+
+
+/**搜索**/
+
+.Zj_Qh_seach {
+	width: 280px!important;
+	height: 30px!important;
+	min-height: 30px!important;
+	-moz-border-radius: 15px;
+	-o-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+	border: 1px solid rgba(215, 220, 232, 1);
+	margin-top: 10px;
+	margin-left: 30px!important;
+}
+
+.Zj_Qh_seach>.layui-input-inline {
+	display: block;
+	!important;
+}
+
+.Zj_Qh_seach>.layui-input-inline input {
+	border: none!important;
+	height: 30px!important;
+	line-height: 30px!important;
+}
+
+.Zj_Qh_seach>.layui-input-inline i {
+	border-top-color: #fff!important;
+}
+
+.Qh_button {
+	width: 96px;
+	height: 30px;
+	position: absolute;
+	right: 11px;
+	top: 11px;
+	padding-left: 10px;
+	line-height: 30px;
+	color: #fff;
+	z-index: 0;
+	background: rgba(53, 115, 250, 1);
+	-moz-border-radius: 0px 15px 15px 0px;
+	-o-border-radius: 0px 15px 15px 0px;
+	-webkit-border-radius: 0px 15px 15px 0px;
+	border-radius: 0px 15px 15px 0px;
+}
+
+
+/*右侧间距*/
+
+.Zj_topright li a {
+	-webkit-padding: 0 10px!important;
+	padding: 0 10px!important;
+}
+
+
+/*********************左侧公共导航***********************/
+
+.Qh_bgcolor,
+.Qh_pubbj,
+.Qh_pubbj>ul>li,
+.Qh_pubbj>ul>li>ul>li {
+	background-color: #fff!important;
+}
+
+.Qh_pubbj>ul>li>a,
+.Qh_pubbj>ul>li>ul>li>a {
+	color: #171D1F!important;
+	border: none!important;
+}
+
+.kit-menu .layui-this a {
+	border-left: 3px solid #3278F0!important;
+	background-color: #dfebff!important;
+	color: #3278F0!important;
+}
+
+.Qh_pubbj>ul>li>a:hover,
+.Qh_pubbj>ul>li>ul>li>a:hover {
+	border-left: 3px solid #3278F0!important;
+	background-color: #dfebff!important;
+}
+
+.Qh_pubbj>ul>li>ul>li a i {
+	padding-left: 10px!important;
+}
+
+.kit-theme-default .kit-nav>.kit-item a.child::after {
+	content: ''!important;
+}
+
+.kit-theme-default .layui-layout-admin .layui-side .layui-side-scroll .kit-menu .kit-menu-item {
+	padding-top: 0px!important;
+	line-height: 54px;
+}
+
+.kit-theme-default .layui-layout-admin .layui-side .layui-side-scroll .kit-menu a.child::after {
+	top: 0px!important
+}
+
+.kit-theme-default .layui-layout-admin .layui-side .layui-side-scroll .kit-menu a {
+	padding: 0px 25px 0px 15px!important;
+}
+
+.kit-theme-default .layui-layout-admin .layui-side .layui-side-scroll .kit-menu a:hover {
+	background-color: #dfebff !important;
+}
+
+
+/*个人中心*/
+
+.Qh_myinfos {
+	width: 100%;
+	height: auto;
+}
+
+.Qh_li {
+	display: block!important;
+}
+
+.sp_userInfo {
+	margin-top: 30px;
+	width: 100%!important;
+	height: 40px;
+	line-height: 40px;
+	display: block!important;
+}
+
+.sp_userInfo img {
+	margin: auto!important;
+	width: 40px!important;
+	height: 40px!important;
+	overflow: hidden;
+}
+
+.sp_username {
+	/*border-bottom: 1px solid #f4f4f4;*/
+	text-align: center!important;
+	margin-bottom: 10px;
+}
+
+.kit-theme-default .kit-nav>.kit-item.wid {
+	display: block;
+	text-align: center !important;
+	width: 100%;
+}
+
+.sp_username::after {
+	font-family: layui-icon !important;
+	content: '\e61a';
+	margin-left: 10px;
+	font-size: 12px;
+}
+
+.kit-theme-default .kit-nav>.kit-item .kit-nav-child.wid {
+	width: 100%;
+	background: #fff!important;
+	border-top: none;
+	border-bottom: 3px solid rgba(53, 115, 250, 1)!important;
+	-moz-box-shadow: 2px 10px 20px #888888;
+	box-shadow: 2px 10px 20px #888888;
+}
+
+.layui-laydate-header {
+	background-color: #FFFFFF!important;
+	border: 1px solid #eee;
+}
+
+.layui-laydate-header i,
+.layui-laypage a:hover {
+	color: #3E464B!important;
+}
+
+.layui-laydate-header span {
+	color: #171D1F!important;
+}
+
+.layui-form-select dl dd.layui-this,
+.tableSelectBar>button,
+.layui-laypage .layui-laypage-curr .layui-laypage-em {
+	background-color: #3278F0;
+}
+
+.laydate-footer-btns span:hover {
+	color: #3278F0!important;
+}
+
+.layui-form-checked[lay-skin=primary] i , .layui-table-hover .layui-form-checked[lay-skin=primary] i  {
+	background-color: #3278F0;
+	border-color: #3278F0!important;
+}
+
+
+
+/******tab******/
+.layui-tab-brief>.layui-tab-title .layui-this  {
+	color: #3278F0;
+	
+}
+.layui-tab-brief > .layui-tab-more li.layui-this::after, .layui-tab-brief > .layui-tab-title .layui-this::after{
+	border-bottom:2px solid #3278F0!important;
+}
+.layui-form-onswitch{
+	border-color: #3278F0;
+	background-color: #3278F0;
+}

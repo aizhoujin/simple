@@ -1,0 +1,29 @@
+#app {
+  overflow: hidden;
+}
+.layui-table tr:nth-child(even) {
+  background-color: #FFFFF5;
+}
+.tran {
+  transition: all .2s;
+  -webkit-transition: all .2s;
+}
+.nowrap {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+}
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #F5F5F5;
+}
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: #F5F5F5;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #3d4a5dd9;
+}

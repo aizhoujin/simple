@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>学生管理系统主页</title>
+    <link rel="stylesheet" href="./lib/timeTable/fullcalendar.css">
+    <script src="./lib/timeTable/jquery.min.js"></script>
+    <script src="./lib/timeTable/moment.min.js"></script>
+    <script src="./lib/timeTable/fullcalendar.min.js"></script>
+    <script src="./lib/timeTable/zh-cn.js"></script>
+    <!-- endbuild -->
+</head>
+<!-- build:js -->
+<!--<script src="lib/polyfill.min.js"></script>-->
+<script src="/lib/layui/layui.js"></script>
+<script src="/js/config/config.js"></script>
+
+<body class="layui-layout-body kit-theme-default">
+<div class="layui-layout layui-layout-admin">
+    <!-- header -->
+    <div class="layui-header Zj_topcolor ">
+        <div class="layui-logo  Zj_topleft">
+            <div class="layui-logo-toggle" kit-toggle="side" data-toggle="on">
+                <i class="layui-icon">&#xe65a;</i>
+            </div>
+             <div class="layui-logo-brand">
+                <a href="#/" class="Qh_name_sty"><img src="https://oss.eanfang.net/ecbd2972163f425bacfbfed943e71553.png" alt="" />启航管理系统</a>
+            </div>
+        </div>
+        <div class="layui-layout-left">
+            <!--<div class="kit-search">
+                <form action="/">
+                    <input type="text" name="keyword" class="kit-search-input" placeholder="关键字..."/>
+                    <button class="kit-search-btn" title="搜索" type="submit">
+                        <i class="layui-icon">&#xe615;</i>
+                    </button>
+                </form>
+            </div>
+            <div style="float: right;padding-top: 5px;margin-left:-50px;background-color: transparent">
+                <form class="layui-form layui-form-pane" lay-filter="form_myInfo" action="">
+                    <div class="layui-input-block icon" id="companySelect"></div>
+                </form>
+            </div>-->
+             <div >
+            	<form class="layui-form layui-form-pane " lay-filter="form_myInfo" action="">
+                    <div class="layui-input-block icon Zj_Qh_seach" id="companySelect" style="z-index: 99;">
+                    	
+                    </div>
+                    <div class="Qh_button" style="z-index: 0;">切换校区</div>
+                    
+                </form>
+            </div>
+        </div>
+
+        <div class="layui-layout-right">
+            <ul class="kit-nav Zj_topright" lay-filter="header_right">
+                <li class="kit-item" kit-target="help">
+                    <a href="javascript:;">
+                        <i class="layui-icon">&#xe607;</i>
+                        <span>帮助</span>
+                    </a>
+                </li>
+                 <li class="kit-item Zj_topright" kit-target="notice">
+                    <a href="javascript:;">
+                        <i class="layui-icon">&#xe645;</i>
+                        <span>通知</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- silds -->
+    
+     <div class="layui-side" kit-side="true" >
+        <div class="layui-side-scroll Qh_bgcolor "  >
+        	<div class="Qh_myinfos">
+        		<ul class="kit-nav Zj_topright" lay-filter="header_right">
+        			 <li class="kit-item Qh_li wid">
+	                    <a href="javascript:;" >
+			              <div id="sp_userInfo" class="sp_userInfo">
+			                <img id="img_head" class="layui-nav-img">		               
+			              </div>
+			               <div id="sp_username" class="sp_username"></div>
+	                    </a>
+                         <div class="user-icon">
+                            <ul class="kit-nav-child kit-nav-right wid" style="display: none">
+                                <li id="li_myInfo" class="kit-item">
+                                    <a>
+                                        <i class="layui-icon">&#xe612;</i>
+                                        <span>个人中心</span>
+                                    </a>
+                                </li>
+                                <!--<li class="kit-item" kit-target="setting">
+                                    <a href="javascript:;">
+                                        <i class="layui-icon">&#xe614;</i>
+                                        <span>设置</span>
+                                    </a>
+                                </li>-->
+                                <li class="kit-nav-line"></li>
+                                <li id="li_logout" class="kit-item">
+                                    <a>
+                                        <i class="layui-icon">&#x1006;</i>
+                                        <span>注销</span>
+                                    </a>
+                                </li>
+                            </ul>
+                         </div>
+                 </li>
+        		</ul>
+        	</div>
+        	
+            <div id="menu-box" class="Qh_pubbj" >          	
+                <ul class="kit-menu">
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <!-- main -->
+    <div class="layui-body" kit-body="true">
+        <router-view></router-view>
+    </div>
+    <!-- footer -->
+    <div class="layui-footer" kit-footer="true">
+        这里是版权信息
+        <div style="width:400px; height:400px;" class="load-container load1">
+            <div class="loader">Loading...</div>
+        </div>
+    </div>
+</div>
+<!-- build:use -->
+<script>
+    layui.use(['menu', 'form', 'bizAdmin', 'userApi', 'orgApi', 'selectN', 'sidebar'], () => {
+        const userApi = layui.userApi;
+        const $ = layui.jquery;
+        const menu = layui.menu;
+        const bizAdmin = layui.bizAdmin;
+        const selectN = layui.selectN;
+        const form = layui.form;
+        const orgApi = layui.orgApi;
+        menu.set({
+            elem: "#menu-box",
+            dynamicRender: true,
+            data: bizAdmin.menuDate
+        });
+        menu.render();
+
+        //如果没登陆 则跳转到登录页
+        userApi.loginToken()
+            .then((data) => {
+                if (data.code !== 200) {
+                    location.href = "/login.html";
+                }
+            })
+            .catch((error) => {
+                location.href = "/login.html";
+            });
+        //初始化基础数据
+        userApi.cfxData()
+            .then((data) => {
+                if (data.code !== 200) {
+                    layer.msg("基础数据获取失败，请退出并重新登录");
+                }
+            }).catch((error) => {
+            console.log(error);
+            layer.msg("基础数据获取失败，请退出并重新登录");
+            // location.href = "/login.html";
+        });
+
+
+        const userInfo = userApi.getUser();
+        if (!userInfo) {
+            location.href = "/login.html";
+        }
+         $("#sp_userInfo").html("<img class='layui-nav-img' src='" + cfx.ossPath(userInfo.headPic) + "'>" );
+         $("#sp_username").html(userInfo.realName);
+
+        //切换公司
+        const companySelectRender = selectN({
+            //元素容器【必填】
+            elem: '#companySelect'
+            //候选数据【必填】
+            , data: userInfo.belongCompanyList
+            , selected: [userInfo.company.orgId]
+            , verify: "required"
+            , search: true
+            , field: {idName: 'orgId', titleName: 'orgName', statusName: 'status', childName: 'children'}
+            //空值项提示，可设置为数组['请选择省','请选择市','请选择县']
+            , tips: false
+            //input的name 不设置与选择器相同(去#.)
+            , name: 'companyId'
+            , onChange: function (val) {
+                if (val == userInfo.company.orgId) {
+                    return;
+                }
+                cfx.loading();
+                orgApi.changeCompany(val)
+                    .then((data) => {
+                        location.reload();
+                        cfx.close();
+                    })
+                    .catch((error) => {
+                        location.reload();
+                    });
+            }
+        });
+
+        form.render();
+
+        //个人资料
+        $("#li_myInfo").on('click', () => {
+            // var that = this;
+            layui.sidebar.render({
+                elem: $("#li_myInfo"),
+                //content:'',
+                title: '个人中心',
+                shade: true,
+                // shadeClose:false,
+                // direction: 'left'
+                dynamicRender: true,
+                url: 'views/biz/user/myInfo.html',
+                width: '50%', //可以设置百分比和px
+            });
+        });
+
+
+        //收缩展开
+        $(document).ready(function(){
+            $(".kit-item").click(function(){
+                $(".user-icon").toggle();
+            });
+        });
+
+        //退出登陆
+        $("#li_logout").click(() => {
+            userApi.logout()
+                .then((data) => {
+                    if (data.code === 200) {
+                        location.href = "/login.html";
+                    }
+                })
+                .catch((error) => {
+
+                });
+        });
+
+    })
+    ;
+</script>
+<!-- endbuild -->
+</body>
+<style type="text/css">
+    .layui-select-title input {
+        background-color: transparent;
+        color: darkgray;
+    }
+</style>
+</html>

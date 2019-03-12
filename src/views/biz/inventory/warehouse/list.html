@@ -1,0 +1,203 @@
+<div class="layui-fluid">
+    <div class="layui-row">
+        <div class="layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header" style="padding-top:8px;">
+                    <div id="wareHouse_search_bar" class=" layui-row layui-col-space10">
+                        <div class="layui-col-md2 layui-col-md-offset5">
+                            <input type="text" name="type" placeholder="请输入仓库类型" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                        <div class="layui-col-md2">
+                            <input type="text" name="name" placeholder="请输入仓库名称" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+
+                        <div class="layui-col-md1">
+                            <button id="btn_search" class="layui-btn">搜一下</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-card-body">
+                    <table id="tb_wareHouse" lay-filter="wareHouse_list"></table>
+
+                    <div id="dv_wareHouse_page"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    cfx.loading();
+    layui.use(['table', 'jquery', 'laypage', 'wareHouseApi', 'queryEntry', 'tools'], () => {
+        const $ = layui.jquery;
+        const table = layui.table;
+        const laypage = layui.laypage;
+        const tools = layui.tools;
+
+        const wareHouseApi = layui.wareHouseApi;
+        let query = layui.queryEntry.get();
+        let warehouse_data = {};
+
+
+        //渲染表格
+        const wareHouse_list = table.render({
+            elem: "#tb_wareHouse",
+            cellMinWidth: 60,
+            toolbar: '#tableBar',
+            defaultToolbar: ['filter', 'print', 'exports'],
+            cols: [[
+                {field: "index", title: '序号', type: 'numbers', align: "center"},
+                {field: "id", title: '主键Id', hide: true, align: "center"},
+                {field: "name", title: "仓库名称", width: "150", align: "center"},
+                {
+                    field: "type", title: "仓库类型", width: "150", align: "center",
+                    templet: (d) => d.state == 0 ? "分仓库" : "总仓库"
+                },
+                {
+                    field: "companyId",
+                    title: "校区",
+                    width: "180",
+                    align: "center",
+                    templet: (d) => d.companyEntity.orgName
+                },
+                {
+                    field: "createStaff",
+                    title: "创建人",
+                    width: "120",
+                    templet: (d) => d.createStaffEntity ? d.createStaffEntity.infoEntity.realName : ""
+                },
+                {field: "createTime", title: "创建时间", width: "180", templet: (d) => cfx.getDate(d.createTime)},
+                {field: "memo", title: "备注", width: "255", align: "center"},
+
+                {title: '操作', fixed: 'right', width: 300, align: 'center', toolbar: '#toolBar'}
+            ]],
+            data: warehouse_data
+        });
+        //设置 tableBar
+        table.on('toolbar(wareHouse_list)', (obj) => {
+            const layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+            if (layEvent === 'add') {
+                layer.open({
+                    type: 2,
+                    area: ['680px', '380px'],
+                    content: ['views/biz/inventory/wareHouse/insert.html', 'no'],
+                    end: () => {
+                        queryWareHoure(query);
+                    }
+                });
+            }
+        });
+
+        //设置 toolBar 事件
+        table.on('tool(wareHouse_list)', (obj) => {
+            const data = obj.data; //获得当前行数据
+            const layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+            const tr = obj.tr; //获得当前行 tr 的DOM对象
+            if (layEvent === 'detail') {
+                const url = tools.getUrl(path.wareHouse.detail,
+                    [
+                        {"wareHouseId": data.id},
+                        {"edit": 0},
+                    ]);
+                // location.href = url;
+                layer.open({
+                    type: 2,
+                    area: ['680px', '350px'],
+                    content: [url, 'yes']
+                });
+
+            } else if (layEvent === 'edit') {
+                const url = tools.getUrl(path.wareHouse.detail,
+                    [
+                        {"wareHouseId": data.id},
+                        {"edit": 1},
+                    ]);
+                layer.open({
+                    type: 2,
+                    area: ['680px', '380px'],
+                    content: [url, 'yes'],
+                    end: () => {
+                        queryWareHoure(query);
+                    }
+                });
+            } else if (layEvent === 'delete') {
+                layer.open({
+                    content: '确定要删除此仓库信息？',
+                    btn: ['确定', '取消'],
+                    btn1: (index, layero) => {
+                        wareHouseApi.delete(data.id)
+                            .then(data => {
+                                queryWareHoure(query);
+                            });
+                        layer.close(index);
+                    },
+                    btn2: (index, layero) => {
+                    },
+                });
+            }
+        });
+        // 初始化 laypage
+        const wareHouse_laypage = function () {
+            laypage.render({
+                elem: "dv_wareHouse_page",
+                count: warehouse_data.total,
+                curr: warehouse_data.page,
+                // hash: 'page', //自定义hash值
+                theme: 'xxx',
+                jump: (obj, first) => {
+                    //首次不执行
+                    if (!first) {
+                        query.page = obj.curr;
+                        query.size = obj.limit;
+                        queryWareHoure(query);
+                    }
+                }
+            });
+        }
+
+        //查询 仓库方法
+        const queryWareHoure = (query) => {
+            wareHouseApi.getList(query)
+                .then((data) => {
+                    if (data.code === 200) {
+                        warehouse_data = data.data;
+                        wareHouse_list.reload({
+                            data: warehouse_data.list
+                        });
+                        wareHouse_laypage();
+                        cfx.close();
+                    }
+                });
+        };
+        //搜索
+        $("#btn_search").click(() => {
+            //const searchData = tools.searchData('wareHouse_search_bar');
+            query = tools.searchQuery('wareHouse_search_bar', [
+                {'name': 'like'},
+                {'type': 'like',}
+            ]);
+            queryWareHoure(query);
+        });
+
+        //调用接口
+
+        queryWareHoure(query);
+    });
+</script>
+<script type="text/html" id="tableBar">
+    <a class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon">&#xe654;</i> 新增</a>
+</script>
+<script type="text/html" id="toolBar">
+    <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete"><i class="layui-icon layui-icon-close"></i>删除</a>
+
+</script>
+
+<style>
+    .layui-table tr:nth-child(even) {
+        background-color: #FFFFF5;
+    }
+</style>
